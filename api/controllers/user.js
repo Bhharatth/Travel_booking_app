@@ -1,7 +1,5 @@
 import User from "../models/User.js";
 
-
-
 //update user
 export const updateUser = async (req, res, next) => {
   try {
@@ -31,19 +29,16 @@ export const getUser = async (req, res, next) => {
     const user = await User.findById(req.params.id);
     res.status(500).json(user);
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
 //get all user
 export const getAllUser = async (req, res, next) => {
-  {
-    try {
-      const user = await User.find();
-      res.status(200).json(user);
-    } catch (error) {
-        res.status(200).json(error);
-      next(err);
-    }
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
   }
 };

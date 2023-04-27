@@ -3,6 +3,7 @@ import { createError } from "../utils/err.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+
 //register user
 
 export const register = async (req, res, next) => {
@@ -10,8 +11,7 @@ export const register = async (req, res, next) => {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({
-      username:req.body.username,
-      email:req.body.email,
+     ...req.body,
       password:hash,
     })
     await newUser.save();
